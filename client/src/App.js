@@ -13,6 +13,8 @@ import AboutPage from './pages/AboutPage';
 import CartPage from './pages/CartPage';
 import ProductsPage from './pages/ProductsPage';
 import ProductsAdminPage from './pages/ProductsAdminPage';
+import OrdersAdminPage from './pages/OrdersAdminPage';
+import ClientsAdminPage from './pages/ClientsAdminPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -60,6 +62,12 @@ function App() {
         </Route>
         <Route path='/admin/produtos'>
           <ProductsAdminPage />
+        </Route>
+        <Route path='/admin/pedidos'>
+          <OrdersAdminPage />
+        </Route>
+        <Route path='/admin/clientes'>
+          <ClientsAdminPage />
         </Route>
       </Switch>
       <Footer />

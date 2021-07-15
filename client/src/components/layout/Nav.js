@@ -60,11 +60,23 @@ const Nav = () => {
         )}
 
         {isAuthenticated && userInfo.isAdmin && (
-          <li className='navigation-item'>
-            <Link to='/admin/produtos' className='navigation-link'>
-              Gerenciar produtos
-            </Link>
-          </li>
+          <>
+            <li className='navigation-item'>
+              <Link to='/admin/produtos' className='navigation-link'>
+                Gerenciar produtos
+              </Link>
+            </li>
+            <li className='navigation-item'>
+              <Link to='/admin/pedidos' className='navigation-link'>
+                Gerenciar pedidos
+              </Link>
+            </li>
+            <li className='navigation-item'>
+              <Link to='/admin/clientes' className='navigation-link'>
+                Gerenciar clientes
+              </Link>
+            </li>
+          </>
         )}
 
         <li className='navigation-item'>
