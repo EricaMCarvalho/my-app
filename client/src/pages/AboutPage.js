@@ -1,9 +1,10 @@
 import React from 'react';
+import About from '../components/About';
 
 const AboutPage = () => {
   return (
     <main className='container'>
-      <h1 className='heading-primary'>Sobre nós</h1>
+      <About />
     </main>
   );
 };

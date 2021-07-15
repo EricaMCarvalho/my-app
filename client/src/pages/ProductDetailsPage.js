@@ -18,7 +18,7 @@ const ProductDetailsPage = () => {
   }, [dispatch, id]);
 
   return (
-    <>
+    <main className='container'>
       <Link to='/produtos' className='button m-2'>
         <i className='far fa-arrow-alt-circle-left'></i> Voltar
       </Link>
@@ -27,7 +27,7 @@ const ProductDetailsPage = () => {
         <Alert variant='danger'>{notification.message}</Alert>
       )}
       {product && <ProductDetails product={product} />}
-    </>
+    </main>
   );
 };
 

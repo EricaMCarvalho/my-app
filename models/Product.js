@@ -16,7 +16,6 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       required: [true, 'Por favor insira o preço do produto'],
     },
-    priceReal: String,
     promo: String,
     image: {
       type: String,

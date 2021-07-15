@@ -3,11 +3,17 @@ import axios from 'axios';
 import { showNotification } from './uiSlice';
 
 const initialState = {
-  userInfo: {},
-  token: null,
-  expiresAt: null,
+  userInfo: localStorage.getItem('roma-userInfo')
+    ? JSON.parse(localStorage.getItem('roma-userInfo'))
+    : {},
+  token: localStorage.getItem('roma-token') || null,
+  expiresAt: localStorage.getItem('roma-expiresAt') || null,
   isAuthenticated: false,
 };
+
+const now = new Date().getTime() / 1000;
+initialState.isAuthenticated =
+  initialState.token && initialState.expiresAt && now < initialState.expiresAt;
 
 export const authSlice = createSlice({
   name: 'auth',

@@ -304,6 +304,7 @@ body {
     margin: 1rem 0; }
   .form input[type='text'],
   .form input[type='email'],
+  .form input[type='number'],
   .form input[type='tel'],
   .form input[type='password'],
   .form input[type='date'],
@@ -524,7 +525,7 @@ body {
     .about-inner {
       display: grid;
       grid-template-columns: 1fr 1fr; } }
-  .about__text {
+  .about-text {
     padding: 0 4rem;
     text-align: center;
     line-height: 2.8rem;
@@ -532,18 +533,18 @@ body {
     flex-direction: column;
     justify-content: center;
     position: relative; }
-  .about__text:before {
+  .about-text:before {
     content: '';
     position: absolute;
     left: 0;
     top: 0;
     display: block;
-    background-image: url(http://localhost:3000/images/logo.png);
+    background-image: url(./images/logo.png);
     background-size: cover;
     opacity: 0.3;
     height: 100%;
     width: 100%; }
-  .about__image {
+  .about-image {
     border-radius: 50%;
     padding: 3rem; }
 

@@ -13,26 +13,13 @@ import AboutPage from './pages/AboutPage';
 import CartPage from './pages/CartPage';
 import ProductsPage from './pages/ProductsPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
-import ProductsAdminPage from './pages/ProductsAdminPage';
-import OrdersAdminPage from './pages/OrdersAdminPage';
-import ClientsAdminPage from './pages/ClientsAdminPage';
+import ProductsAdminPage from './pages/admin/ProductsAdminPage';
+import OrdersAdminPage from './pages/admin/OrdersAdminPage';
+import ClientsAdminPage from './pages/admin/ClientsAdminPage';
+import NewProductPage from './pages/admin/NewProductPage';
 
 function App() {
-  const dispatch = useDispatch();
   const { isAuthenticated, userInfo } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    const userInfo = localStorage.getItem('roma-userInfo')
-      ? JSON.parse(localStorage.getItem('roma-userInfo'))
-      : {};
-    const token = localStorage.getItem('roma-token') || null;
-    const expiresAt = localStorage.getItem('roma-expiresAt') || null;
-
-    const now = new Date().getTime() / 1000;
-    const isAuthenticated = token && expiresAt && now < expiresAt;
-
-    dispatch(setAuthInfo({ userInfo, token, expiresAt, isAuthenticated }));
-  }, [dispatch]);
 
   return (
     <BrowserRouter>
@@ -84,6 +71,7 @@ function App() {
         />
 
         <Route
+          exact
           path='/admin/produtos'
           render={() =>
             isAuthenticated && userInfo.isAdmin ? (
@@ -95,6 +83,18 @@ function App() {
         />
 
         <Route
+          path='/admin/produtos/novo'
+          render={() =>
+            isAuthenticated && userInfo.isAdmin ? (
+              <NewProductPage />
+            ) : (
+              <Redirect to='/login' />
+            )
+          }
+        />
+
+        <Route
+          exact
           path='/admin/pedidos'
           render={() =>
             isAuthenticated && userInfo.isAdmin ? (
@@ -106,6 +106,7 @@ function App() {
         />
 
         <Route
+          exact
           path='/admin/clientes'
           render={() =>
             isAuthenticated && userInfo.isAdmin ? (
