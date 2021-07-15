@@ -6,6 +6,12 @@ import Footer from './components/layout/Footer';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import { setAuthInfo } from './store/authSlice';
+import UserProfilePage from './pages/UserProfilePage';
+import HomePage from './pages/HomePage';
+import ContactPage from './pages/ContactPage';
+import AboutPage from './pages/AboutPage';
+import CartPage from './pages/CartPage';
+import ProductsPage from './pages/ProductsPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +33,24 @@ function App() {
     <BrowserRouter>
       <Header />
       <Switch>
+        <Route exact path='/'>
+          <HomePage />
+        </Route>
+        <Route path='/produtos'>
+          <ProductsPage />
+        </Route>
+        <Route path='/sobre-nos'>
+          <AboutPage />
+        </Route>
+        <Route path='/contato'>
+          <ContactPage />
+        </Route>
+        <Route path='/sacola'>
+          <CartPage />
+        </Route>
+        <Route path='/conta'>
+          <UserProfilePage />
+        </Route>
         <Route path='/cadastro'>
           <SignupPage />
         </Route>

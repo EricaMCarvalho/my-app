@@ -49,8 +49,8 @@ const Nav = () => {
 
         {isAuthenticated && (
           <li className='navigation-item'>
-            <Link to='/sua-conta' className='navigation-link'>
-              Sua conta
+            <Link to='/conta' className='navigation-link'>
+              Seus pedidos
             </Link>
           </li>
         )}
