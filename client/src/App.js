@@ -12,6 +12,7 @@ import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import CartPage from './pages/CartPage';
 import ProductsPage from './pages/ProductsPage';
+import ProductsAdminPage from './pages/ProductsAdminPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +57,9 @@ function App() {
         </Route>
         <Route path='/login'>
           <LoginPage />
+        </Route>
+        <Route path='/admin/produtos'>
+          <ProductsAdminPage />
         </Route>
       </Switch>
       <Footer />

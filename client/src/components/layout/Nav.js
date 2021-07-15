@@ -40,22 +40,18 @@ const Nav = () => {
           </Link>
         </li>
 
-        {(!isAuthenticated || !userInfo.isAdmin) && (
-          <>
-            <li className='navigation-item'>
-              <Link to='/contato' className='navigation-link'>
-                Fale Conosco
-              </Link>
-            </li>
-            <li className='navigation-item'>
-              <Link to='/sacola' className='navigation-link'>
-                Sua sacola
-              </Link>
-            </li>
-          </>
-        )}
+        <li className='navigation-item'>
+          <Link to='/contato' className='navigation-link'>
+            Fale Conosco
+          </Link>
+        </li>
+        <li className='navigation-item'>
+          <Link to='/sacola' className='navigation-link'>
+            Sua sacola
+          </Link>
+        </li>
 
-        {isAuthenticated && !userInfo.isAdmin && (
+        {isAuthenticated && (
           <li className='navigation-item'>
             <Link to='/conta' className='navigation-link'>
               Seus pedidos
