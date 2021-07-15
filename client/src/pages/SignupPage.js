@@ -39,8 +39,6 @@ const SignupPage = () => {
     } else {
       const userData = { firstName, lastName, email, password };
       dispatch(signup(userData));
-
-      setTimeout(() => {}, 700);
     }
   };
   return (
@@ -49,14 +47,14 @@ const SignupPage = () => {
       <h2 className='heading-secondary'>
         <i className='fas fa-user'></i> Crie sua conta
       </h2>
-      {notification && notification.status === 'loading' && <Loader />}
-      {notification && notification.status === 'error' && (
-        <Alert variant='danger'>{notification.message}</Alert>
-      )}
-      {notification && notification.status === 'success' && (
-        <Alert variant='success'>{notification.message}</Alert>
-      )}
       <form className='form' onSubmit={handleSubmit}>
+        {notification && notification.status === 'loading' && <Loader />}
+        {notification && notification.status === 'error' && (
+          <Alert variant='danger'>{notification.message}</Alert>
+        )}
+        {notification && notification.status === 'success' && (
+          <Alert variant='success'>{notification.message}</Alert>
+        )}
         <div className='form-group'>
           <label htmlFor='first-name'>Nome</label>
           <input

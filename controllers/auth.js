@@ -10,7 +10,7 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new ErrorResponse('Todos os campos são obrigatórios', 400));
   }
 
-  const user = await User.findOne({ email }).lean();
+  const user = await User.findOne({ email }).select('+password');
 
   if (!user) {
     return next(ErrorResponse('Email ou senha inválido', 400));
@@ -21,7 +21,6 @@ exports.login = catchAsync(async (req, res, next) => {
   if (!isMatch) {
     return next(ErrorResponse('Email ou senha inválido', 400));
   }
-
   sendTokenResponse(user, 200, res);
 });
 

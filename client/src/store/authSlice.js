@@ -47,7 +47,40 @@ export const signup = (userData) => async (dispatch) => {
     dispatch(
       showNotification({
         status: 'success',
-        message: 'Registration successful',
+        message: 'Cadastro realizado com sucesso',
+      })
+    );
+  } catch (error) {
+    dispatch(
+      showNotification({
+        status: 'error',
+        message:
+          error.response && error.response.data.error
+            ? error.response.data.error
+            : error.message,
+      })
+    );
+  }
+};
+
+export const login = (userData) => async (dispatch) => {
+  dispatch(
+    showNotification({
+      status: 'loading',
+    })
+  );
+
+  try {
+    const { data } = await axios.post('/api/auth/login', userData);
+
+    const { userInfo, token, expiresAt } = data;
+
+    dispatch(authenticate({ userInfo, token, expiresAt }));
+
+    dispatch(
+      showNotification({
+        status: 'success',
+        message: 'Login realizado com successo',
       })
     );
   } catch (error) {
