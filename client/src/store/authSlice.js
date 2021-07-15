@@ -44,12 +44,7 @@ export const signup = (userData) => async (dispatch) => {
 
     dispatch(authenticate({ userInfo, token, expiresAt }));
 
-    dispatch(
-      showNotification({
-        status: 'success',
-        message: 'Cadastro realizado com sucesso',
-      })
-    );
+    dispatch(showNotification(null));
   } catch (error) {
     dispatch(
       showNotification({
@@ -77,12 +72,7 @@ export const login = (userData) => async (dispatch) => {
 
     dispatch(authenticate({ userInfo, token, expiresAt }));
 
-    dispatch(
-      showNotification({
-        status: 'success',
-        message: 'Login realizado com successo',
-      })
-    );
+    dispatch(showNotification(null));
   } catch (error) {
     dispatch(
       showNotification({

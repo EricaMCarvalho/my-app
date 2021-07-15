@@ -7,10 +7,14 @@ const uiSlice = createSlice({
   initialState,
   reducers: {
     showNotification: (state, action) => {
-      state.notification = {
-        status: action.payload.status,
-        message: action.payload.message,
-      };
+      if (action.payload) {
+        state.notification = {
+          status: action.payload.status,
+          message: action.payload.message,
+        };
+      } else {
+        state.notification = null;
+      }
     },
   },
 });

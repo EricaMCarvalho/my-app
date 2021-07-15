@@ -52,9 +52,6 @@ const SignupPage = () => {
         {notification && notification.status === 'error' && (
           <Alert variant='danger'>{notification.message}</Alert>
         )}
-        {notification && notification.status === 'success' && (
-          <Alert variant='success'>{notification.message}</Alert>
-        )}
         <div className='form-group'>
           <label htmlFor='first-name'>Nome</label>
           <input

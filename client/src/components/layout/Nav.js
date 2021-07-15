@@ -1,7 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../store/authSlice';
 
 const Nav = () => {
+  const { isAuthenticated } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  };
+
   return (
     <nav className='navigation-nav'>
       <ul className='navigation-list'>
@@ -35,16 +44,28 @@ const Nav = () => {
           </Link>
         </li>
 
-        <li className='navigation-item'>
-          <Link to='/pedidos' className='navigation-link'>
-            Seus pedidos
-          </Link>
-        </li>
+        {isAuthenticated && (
+          <li className='navigation-item'>
+            <Link to='/sua-conta' className='navigation-link'>
+              Sua conta
+            </Link>
+          </li>
+        )}
 
         <li className='navigation-item'>
-          <Link to='/cadastro' className='navigation-link'>
-            Entre
-          </Link>
+          {isAuthenticated ? (
+            <Link
+              to='/produtos'
+              onClick={handleLogout}
+              className='navigation-link'
+            >
+              Sair
+            </Link>
+          ) : (
+            <Link to='/login' className='navigation-link'>
+              Entrar
+            </Link>
+          )}
         </li>
       </ul>
     </nav>
