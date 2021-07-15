@@ -5,6 +5,7 @@ const connectDB = require('./config/database');
 
 const errorHandler = require('./middleware/errorHandler');
 const authRouter = require('./routes/auth');
+const productsRouter = require('./routes/products');
 
 const app = express();
 
@@ -18,6 +19,7 @@ connectDB();
 app.use(express.json());
 
 app.use('/api/auth', authRouter);
+app.use('/api/products', productsRouter);
 
 app.use(errorHandler);
 

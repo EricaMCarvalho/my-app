@@ -14,8 +14,6 @@ const Nav = () => {
     history.push('/login');
   };
 
-  console.log(userInfo);
-
   return (
     <nav className='navigation-nav'>
       {isAuthenticated && (

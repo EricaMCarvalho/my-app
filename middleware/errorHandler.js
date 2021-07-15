@@ -7,7 +7,7 @@ const errorHandler = (err, req, res, next) => {
   console.log(err.stack);
 
   if (err.name === 'CastError') {
-    error = new ErrorResponse(`Resource not found with id ${err.value}`, 404);
+    error = new ErrorResponse('Página não encontrada', 404);
   }
 
   if (err.code === 11000) {

@@ -16,7 +16,8 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new ErrorResponse('Email ou senha inválido', 400));
   }
 
-  const isMatch = user.isValidPassword(password);
+  const isMatch = await user.isValidPassword(password);
+  console.log(isMatch);
 
   if (!isMatch) {
     return next(new ErrorResponse('Email ou senha inválido', 400));
