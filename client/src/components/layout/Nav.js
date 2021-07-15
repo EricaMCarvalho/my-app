@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/authSlice';
 
 const Nav = () => {
-  const { isAuthenticated } = useSelector((state) => state.auth);
+  const { userInfo, isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -13,6 +13,9 @@ const Nav = () => {
 
   return (
     <nav className='navigation-nav'>
+      {isAuthenticated && (
+        <h2 className='heading-secondary'>Olá, {userInfo.firstName}</h2>
+      )}
       <ul className='navigation-list'>
         <li className='navigation-item'>
           <Link to='/' className='navigation-link'>
@@ -55,7 +58,7 @@ const Nav = () => {
         <li className='navigation-item'>
           {isAuthenticated ? (
             <Link
-              to='/produtos'
+              to='/login'
               onClick={handleLogout}
               className='navigation-link'
             >

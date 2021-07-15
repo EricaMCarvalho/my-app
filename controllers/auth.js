@@ -13,13 +13,13 @@ exports.login = catchAsync(async (req, res, next) => {
   const user = await User.findOne({ email }).select('+password');
 
   if (!user) {
-    return next(ErrorResponse('Email ou senha inválido', 400));
+    return next(new ErrorResponse('Email ou senha inválido', 400));
   }
 
   const isMatch = user.isValidPassword(password);
 
   if (!isMatch) {
-    return next(ErrorResponse('Email ou senha inválido', 400));
+    return next(new ErrorResponse('Email ou senha inválido', 400));
   }
   sendTokenResponse(user, 200, res);
 });

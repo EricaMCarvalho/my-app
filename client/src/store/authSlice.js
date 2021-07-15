@@ -3,47 +3,43 @@ import axios from 'axios';
 import { showNotification } from './uiSlice';
 
 const initialState = {
-  isAuthenticated: false,
   userInfo: {},
-  token: '',
-  expiresAt: 0,
+  token: null,
+  expiresAt: null,
+  isAuthenticated: false,
 };
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    authenticate: (state, action) => {
-      state.isAuthenticated = true;
+    setAuthInfo: (state, action) => {
       state.userInfo = action.payload.userInfo;
       state.token = action.payload.token;
       state.expiresAt = action.payload.expiresAt;
+      state.isAuthenticated = action.payload.isAuthenticated;
     },
-    logout: (state) => {
+    clearAuthInfo: (state) => {
       state.isAuthenticated = false;
       state.userInfo = {};
-      state.token = '';
-      state.expiresAt = 0;
+      state.token = null;
+      state.expiresAt = null;
     },
   },
 });
 
-export const { authenticate, logout } = authSlice.actions;
+export const { setAuthInfo, clearAuthInfo } = authSlice.actions;
 
 export const signup = (userData) => async (dispatch) => {
-  dispatch(
-    showNotification({
-      status: 'loading',
-    })
-  );
+  dispatch(showNotification({ status: 'loading' }));
 
   try {
     const { data } = await axios.post('/api/auth/signup', userData);
-
     const { userInfo, token, expiresAt } = data;
-
-    dispatch(authenticate({ userInfo, token, expiresAt }));
-
+    dispatch(
+      setAuthInfo({ userInfo, token, expiresAt, isAuthenticated: true })
+    );
+    persistAuthInfo(data);
     dispatch(showNotification(null));
   } catch (error) {
     dispatch(
@@ -59,19 +55,15 @@ export const signup = (userData) => async (dispatch) => {
 };
 
 export const login = (userData) => async (dispatch) => {
-  dispatch(
-    showNotification({
-      status: 'loading',
-    })
-  );
+  dispatch(showNotification({ status: 'loading' }));
 
   try {
     const { data } = await axios.post('/api/auth/login', userData);
-
     const { userInfo, token, expiresAt } = data;
-
-    dispatch(authenticate({ userInfo, token, expiresAt }));
-
+    dispatch(
+      setAuthInfo({ userInfo, token, expiresAt, isAuthenticated: true })
+    );
+    persistAuthInfo(data);
     dispatch(showNotification(null));
   } catch (error) {
     dispatch(
@@ -84,6 +76,19 @@ export const login = (userData) => async (dispatch) => {
       })
     );
   }
+};
+
+export const logout = () => (dispatch) => {
+  dispatch(clearAuthInfo());
+  localStorage.removeItem('roma-userInfo');
+  localStorage.removeItem('roma-token');
+  localStorage.removeItem('roma-expiresAt');
+};
+
+const persistAuthInfo = ({ userInfo, token, expiresAt }) => {
+  localStorage.setItem('roma-userInfo', JSON.stringify(userInfo));
+  localStorage.setItem('roma-token', token);
+  localStorage.setItem('roma-expiresAt', expiresAt);
 };
 
 export default authSlice.reducer;
