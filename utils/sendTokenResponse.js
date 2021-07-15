@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken');
 const jwtDecode = require('jwt-decode');
 
 const sendTokenResponse = (user, statusCode, res) => {
-  const { firstName, lastName, email } = user;
+  const { firstName, lastName, email, isAdmin } = user;
 
-  const userInfo = { firstName, lastName, email };
+  const userInfo = { firstName, lastName, email, isAdmin };
 
   const token = jwt.sign(
     {
@@ -27,6 +27,7 @@ const sendTokenResponse = (user, statusCode, res) => {
     userInfo,
     token,
     expiresAt,
+    isAdmin,
   });
 };
 

@@ -1,15 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import { logout } from '../../store/authSlice';
 
 const Nav = () => {
   const { userInfo, isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleLogout = () => {
     dispatch(logout());
+    history.push('/login');
   };
+
+  console.log(userInfo);
 
   return (
     <nav className='navigation-nav'>
@@ -35,22 +40,33 @@ const Nav = () => {
           </Link>
         </li>
 
-        <li className='navigation-item'>
-          <Link to='/contato' className='navigation-link'>
-            Fale Conosco
-          </Link>
-        </li>
+        {(!isAuthenticated || !userInfo.isAdmin) && (
+          <>
+            <li className='navigation-item'>
+              <Link to='/contato' className='navigation-link'>
+                Fale Conosco
+              </Link>
+            </li>
+            <li className='navigation-item'>
+              <Link to='/sacola' className='navigation-link'>
+                Sua sacola
+              </Link>
+            </li>
+          </>
+        )}
 
-        <li className='navigation-item'>
-          <Link to='/sacola' className='navigation-link'>
-            Sua sacola
-          </Link>
-        </li>
-
-        {isAuthenticated && (
+        {isAuthenticated && !userInfo.isAdmin && (
           <li className='navigation-item'>
             <Link to='/conta' className='navigation-link'>
               Seus pedidos
+            </Link>
+          </li>
+        )}
+
+        {isAuthenticated && userInfo.isAdmin && (
+          <li className='navigation-item'>
+            <Link to='/admin/produtos' className='navigation-link'>
+              Gerenciar produtos
             </Link>
           </li>
         )}

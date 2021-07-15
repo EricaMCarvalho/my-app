@@ -37,7 +37,12 @@ export const signup = (userData) => async (dispatch) => {
     const { data } = await axios.post('/api/auth/signup', userData);
     const { userInfo, token, expiresAt } = data;
     dispatch(
-      setAuthInfo({ userInfo, token, expiresAt, isAuthenticated: true })
+      setAuthInfo({
+        userInfo,
+        token,
+        expiresAt,
+        isAuthenticated: true,
+      })
     );
     persistAuthInfo(data);
     dispatch(showNotification(null));

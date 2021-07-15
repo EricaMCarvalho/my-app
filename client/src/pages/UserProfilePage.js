@@ -16,7 +16,7 @@ const UserProfilePage = () => {
     <main className='container'>
       <h1 className='heading-primary'>Sua conta</h1>
       <h2 className='heading-secondary'>
-        <i class='fas fa-shopping-bag'></i> Seus pedidos
+        <i className='fas fa-shopping-bag'></i> Seus pedidos
       </h2>
     </main>
   );
