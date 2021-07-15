@@ -1,0 +1,19 @@
+.alert {
+  padding: 1.2rem;
+  margin: 1.2rem 0;
+  opacity: 0.9;
+  background-color: $color-primary-light;
+  font-size: 1.4rem;
+
+  &-primary {
+    @include set-background($color-primary);
+  }
+
+  &-success {
+    @include set-background($color-success);
+  }
+
+  &-danger {
+    @include set-background($color-danger);
+  }
+}

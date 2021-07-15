@@ -7,19 +7,19 @@ exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return next(new ErrorResponse('Please add an email and a password', 400));
+    return next(new ErrorResponse('Todos os campos são obrigatórios', 400));
   }
 
   const user = await User.findOne({ email }).lean();
 
   if (!user) {
-    return next(ErrorResponse('Wrong email or password', 400));
+    return next(ErrorResponse('Email ou senha inválido', 400));
   }
 
   const isMatch = user.isValidPassword(password);
 
   if (!isMatch) {
-    return next(ErrorResponse('Wrong email or password', 400));
+    return next(ErrorResponse('Email ou senha inválido', 400));
   }
 
   sendTokenResponse(user, 200, res);
@@ -31,17 +31,23 @@ exports.signUp = catchAsync(async (req, res, next) => {
   const existingEmail = await User.findOne({ email }).lean();
 
   if (existingEmail) {
-    return next(new ErrorResponse('Email already exists', 400));
+    return next(
+      new ErrorResponse('Esse endereço de email já está em uso', 400)
+    );
   }
 
   if (!password || password.length < 8) {
     return next(
-      new ErrorResponse('Password must be at least 8 characters long')
+      new ErrorResponse('Sua senha deve conter no mínimo 8 caracteres')
     );
   }
 
-  const user = new User(userData);
-  await user.save();
+  const user = await User.create({
+    firstName,
+    lastName,
+    email,
+    password,
+  });
 
   sendTokenResponse(user, 201, res);
 });

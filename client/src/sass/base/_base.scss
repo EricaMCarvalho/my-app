@@ -1,0 +1,44 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; // 10px
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background-color: $color-white;
+  position: relative;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: $color-primary;
+}
+
+img {
+  width: 100%;
+}
+
+.container {
+  margin: auto;
+  margin-top: 8rem;
+  margin-bottom: 5rem;
+  max-width: $max-grid-width;
+  overflow: hidden;
+  min-height: 100vh;
+
+  @include respond(tab-port) {
+    padding: 0 2rem;
+  }
+}

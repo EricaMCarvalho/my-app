@@ -1,0 +1,46 @@
+.header {
+  padding: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 8rem;
+  width: 100%;
+  @include set-background($color-primary-light);
+  z-index: 1;
+  box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0.2);
+  opacity: 0.9;
+
+  &-logo-box {
+    float: left;
+    width: 19rem;
+  }
+
+  &-button {
+    position: absolute;
+    cursor: pointer;
+    height: 8rem;
+    width: 5.5rem;
+  }
+
+  &-button--right {
+    right: 0;
+  }
+
+  &-button--left:hover {
+    transform: scale(1.1) translateY(-2px);
+  }
+
+  &-button--left:active {
+    transform: scale(1) translateY(1px);
+  }
+
+  &-button--left {
+    font-size: 3rem;
+    right: 5.5rem;
+  }
+
+  &-icon {
+    @include abs-center;
+    color: $color-primary;
+  }
+}

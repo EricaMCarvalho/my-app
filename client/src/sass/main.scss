@@ -1,0 +1,26 @@
+@import 'abstracts/functions';
+@import 'abstracts/mixins';
+@import 'abstracts/variables';
+
+@import 'base/base';
+@import 'base/typography';
+@import 'base/utilities';
+
+@import 'components/alert';
+@import 'components/button';
+@import 'components/form';
+@import 'components/icons';
+@import 'components/loader';
+@import 'components/search';
+
+@import 'layout/footer';
+@import 'layout/header';
+@import 'layout/navigation';
+
+@import 'pages/about';
+@import 'pages/home';
+@import 'pages/product';
+@import 'pages/products';
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pinyon+Script&display=swap');

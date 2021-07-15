@@ -2,11 +2,9 @@ const jwt = require('jsonwebtoken');
 const jwtDecode = require('jwt-decode');
 
 const sendTokenResponse = (user, statusCode, res) => {
-  const userInfo = {
-    firstName,
-    lastName,
-    email,
-  };
+  const { firstName, lastName, email } = user;
+
+  const userInfo = { firstName, lastName, email };
 
   const token = jwt.sign(
     {

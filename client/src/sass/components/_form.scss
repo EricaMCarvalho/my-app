@@ -1,0 +1,28 @@
+.form {
+  padding: 0 2rem;
+  max-width: 60rem;
+  margin: auto;
+
+  &-group {
+    margin: 1.2rem 0;
+  }
+
+  label {
+    display: block;
+    margin: 1rem 0;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='tel'],
+  input[type='password'],
+  input[type='date'],
+  textarea {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1.8rem;
+    border: 1px solid $color-primary;
+    color: $color-primary;
+  }
+}

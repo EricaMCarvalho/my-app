@@ -1,0 +1,40 @@
+.product-list {
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @include respond(tab-port) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @include respond(tab-land) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  &__item {
+    box-shadow: 0.3rem 0.3rem 0.3rem rgba(0, 0, 0, 0.2);
+    transition: all 0.2s;
+    padding: 1.5rem;
+
+    @include respond(tab-port) {
+      padding: 2rem;
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      margin-top: 1rem;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0.4rem 0.4rem 0.4rem rgba(0, 0, 0, 0.2);
+    }
+
+    &:active {
+      transform: translateY(1px);
+      box-shadow: 0.1rem 0.1rem 0.1rem rgba(0, 0, 0, 0.2);
+    }
+  }
+}

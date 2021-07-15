@@ -1,0 +1,35 @@
+/*
+COLORS
+
+#fec89a
+#ffd7ba
+#FFE5D9
+#ECE4DB
+#D8E2DC
+#E8E8E4
+#F8EDEB
+#FAE1DD
+#FCD5CE
+#FEC5BB
+*/
+
+$color-primary: darken(rgb(222, 180, 134), 5%);
+$color-primary-light: #fcece5;
+$color-primary-dark: darken(rgb(222, 180, 134), 15%);
+
+$color-grey-light: #ccc;
+$color-grey-dark-1: #777;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #333;
+
+$color-white: #fff;
+
+$color-success: #d8e2dc;
+$color-danger: #fec5bb;
+
+// SIZES
+$sidebar-size: 30rem;
+
+$default-font-size: 1.6rem;
+
+$max-grid-width: 120rem;

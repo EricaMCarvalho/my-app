@@ -1,0 +1,44 @@
+.hero {
+  height: 80vh;
+  position: relative;
+  background-image: url(http://localhost:3000/images/unnamed.jpeg);
+  background-size: cover;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    animation: moveInBottom 1s;
+
+    &__image {
+      max-width: 40rem;
+    }
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    bottom: -5px;
+    background-image: url(http://localhost:3000/images/up.png);
+    background-size: repeat-x;
+  }
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

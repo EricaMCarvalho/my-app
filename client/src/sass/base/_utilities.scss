@@ -1,0 +1,82 @@
+// Background
+.bg {
+  &-primary {
+    @include set-background($color-primary);
+  }
+
+  &-light {
+    @include set-background($color-primary-light);
+  }
+
+  &-dark {
+    @include set-background($color-primary-dark);
+  }
+
+  &-success {
+    @include set-background($color-success);
+  }
+
+  &-danger {
+    @include set-background($color-danger);
+  }
+
+  &-white {
+    @include set-background($color-white);
+    border: 1px solid $color-grey-light;
+  }
+}
+
+.overlay-dark {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.overlay-light {
+  background-color: rgba($color-primary-light, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+// Margin and padding
+$spaces: (1, 2, 3, 4, 5);
+
+@each $space in $spaces {
+  .m-#{$space} {
+    margin: #{$space}rem;
+  }
+
+  .my-#{$space} {
+    margin: #{$space}rem 0;
+  }
+
+  .mx-#{$space} {
+    margin: 0 #{$space}rem;
+  }
+
+  .p-#{$space} {
+    padding: #{$space}rem;
+  }
+
+  .py-#{$space} {
+    padding: #{$space}rem 0;
+  }
+
+  .p-#{$space} {
+    padding: 0 #{$space}rem;
+  }
+}
+
+.m-auto {
+  margin: auto;
+}
+
+.text-center {
+  text-align: center;
+}

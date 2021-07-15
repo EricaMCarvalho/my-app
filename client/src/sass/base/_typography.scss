@@ -1,0 +1,44 @@
+body {
+  font-size: 1.6rem;
+  font-weight: 400;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.8rem;
+  color: $color-primary;
+}
+
+.heading-primary {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.heading-secondary {
+  font-family: 'Pinyon Script', cursive;
+  color: $color-primary-dark;
+  font-size: 2.6rem;
+  color: $color-primary;
+  margin: 1rem;
+  text-align: center;
+}
+
+.heading-tertiary {
+  font-size: 1.7rem;
+  color: $color-primary;
+  font-weight: 300;
+}
+
+.heading-quaternary {
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  color: $color-primary;
+  margin: 1rem 0;
+  font-weight: 400;
+}
+
+.lead {
+  padding: 2.5rem 0;
+}

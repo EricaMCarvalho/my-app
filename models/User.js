@@ -4,20 +4,20 @@ const bcrypt = require('bcryptjs');
 const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    required: [true, 'Please add a first name'],
+    required: [true, 'Por favor insira o seu nome'],
   },
   lastName: {
     type: String,
-    required: [true, 'Please add a last name'],
+    required: [true, 'Por favor insira o seu sobrenome'],
   },
   email: {
     type: String,
-    required: [true, 'Please add an email'],
+    required: [true, 'Por favor insira seu email'],
     unique: true,
     lowercase: true,
     match: [
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      'Please add a valid email',
+      'Por favor insira um email válido',
     ],
   },
   password: {
@@ -30,7 +30,7 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-UserSchema.pre('save', async () => {
+UserSchema.pre('save', async function (next) {
   const salt = await bcrypt.genSalt(12);
   this.password = await bcrypt.hash(this.password, salt);
   next();
