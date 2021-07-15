@@ -1,10 +1,10 @@
 .hero {
   height: 80vh;
   position: relative;
-  background-image: url(http://localhost:3000/images/unnamed.jpeg);
+  background-image: url(./images/macarons.jpeg);
   background-size: cover;
 
-  &__content {
+  &-content {
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -14,7 +14,7 @@
     margin: auto;
     animation: moveInBottom 1s;
 
-    &__image {
+    &-image {
       max-width: 40rem;
     }
   }
@@ -26,7 +26,7 @@
     width: 100%;
     height: 30px;
     bottom: -5px;
-    background-image: url(http://localhost:3000/images/up.png);
+    background-image: url(./images/up.png);
     background-size: repeat-x;
   }
 }

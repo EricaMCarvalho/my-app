@@ -12,6 +12,7 @@ import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
 import CartPage from './pages/CartPage';
 import ProductsPage from './pages/ProductsPage';
+import ProductDetailsPage from './pages/ProductDetailsPage';
 import ProductsAdminPage from './pages/ProductsAdminPage';
 import OrdersAdminPage from './pages/OrdersAdminPage';
 import ClientsAdminPage from './pages/ClientsAdminPage';
@@ -41,8 +42,12 @@ function App() {
           <HomePage />
         </Route>
 
-        <Route path='/produtos'>
+        <Route exact path='/produtos'>
           <ProductsPage />
+        </Route>
+
+        <Route exact path='/produtos/:id'>
+          <ProductDetailsPage />
         </Route>
 
         <Route path='/sobre-nos'>

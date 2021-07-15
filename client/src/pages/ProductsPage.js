@@ -22,7 +22,7 @@ const ProductsPage = () => {
       </h2>
       {notification && notification.status === 'loading' && <Loader />}
       {notification && notification.status === 'error' && (
-        <Alert variant='danger'>{notification.status}</Alert>
+        <Alert variant='danger'>{notification.message}</Alert>
       )}
       {products && <ProductList products={products} />}
     </main>
