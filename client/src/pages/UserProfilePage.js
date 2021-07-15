@@ -1,17 +1,6 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router';
-import { useSelector } from 'react-redux';
+import React from 'react';
 
 const UserProfilePage = () => {
-  const history = useHistory();
-  const { isAuthenticated } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      history.push('/login');
-    }
-  }, [history, isAuthenticated]);
-
   return (
     <main className='container'>
       <h1 className='heading-primary'>Sua conta</h1>

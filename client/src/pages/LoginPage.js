@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../store/authSlice';
@@ -11,16 +10,8 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const { notification } = useSelector((state) => state.ui);
-  const { isAuthenticated } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      history.push('/produtos');
-    }
-  }, [history, isAuthenticated]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
