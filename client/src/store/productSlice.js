@@ -34,10 +34,11 @@ const productSlice = createSlice({
 const { setProducts, setProduct, addProduct, editProduct } =
   productSlice.actions;
 
-export const fetchProducts = () => async (dispatch) => {
+export const fetchProducts = (query) => async (dispatch) => {
   dispatch(showNotification({ status: 'loading' }));
+  const url = `/api/products${query ? `?filter=${query}` : ''}`;
   try {
-    const { data } = await axios.get('/api/products');
+    const { data } = await axios.get(url);
     dispatch(setProducts(data.products));
     dispatch(showNotification(null));
   } catch (error) {

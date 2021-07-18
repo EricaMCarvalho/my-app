@@ -8,7 +8,14 @@ const ErrorResponse = require('../utils/ErrorResponse');
  * Access:      Public
  */
 exports.getProducts = catchAsync(async (req, res, next) => {
-  const products = await Product.find();
+  let query = req.query;
+  let products;
+  if (query) {
+    products = await Product.find({ isFeatured: true });
+  } else {
+    products = await Product.find();
+  }
+
   return res
     .status(200)
     .json({ success: true, count: products.length, products });
