@@ -6,14 +6,13 @@ const initialState = {
   userInfo: localStorage.getItem('roma-userInfo')
     ? JSON.parse(localStorage.getItem('roma-userInfo'))
     : {},
-  token: localStorage.getItem('roma-token') || null,
   expiresAt: localStorage.getItem('roma-expiresAt') || null,
   isAuthenticated: false,
 };
 
 const now = new Date().getTime() / 1000;
 initialState.isAuthenticated =
-  initialState.token && initialState.expiresAt && now < initialState.expiresAt;
+  initialState.expiresAt && now < initialState.expiresAt;
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -89,16 +88,30 @@ export const login = (userData) => async (dispatch) => {
   }
 };
 
-export const logout = () => (dispatch) => {
-  dispatch(clearAuthInfo());
-  localStorage.removeItem('roma-userInfo');
-  localStorage.removeItem('roma-token');
-  localStorage.removeItem('roma-expiresAt');
+export const logout = () => async (dispatch) => {
+  dispatch(showNotification({ status: 'loading' }));
+
+  try {
+    await axios.get('/api/auth/logout');
+    dispatch(clearAuthInfo());
+    localStorage.removeItem('roma-userInfo');
+    localStorage.removeItem('roma-expiresAt');
+    dispatch(showNotification(null));
+  } catch (error) {
+    dispatch(
+      showNotification({
+        status: 'error',
+        message:
+          error.response && error.response.data.error
+            ? error.response.data.error
+            : error.message,
+      })
+    );
+  }
 };
 
-const persistAuthInfo = ({ userInfo, token, expiresAt }) => {
+const persistAuthInfo = ({ userInfo, expiresAt }) => {
   localStorage.setItem('roma-userInfo', JSON.stringify(userInfo));
-  localStorage.setItem('roma-token', token);
   localStorage.setItem('roma-expiresAt', expiresAt);
 };
 

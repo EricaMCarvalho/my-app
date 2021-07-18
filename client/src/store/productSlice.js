@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { showNotification } from './uiSlice';
-import { authAxios } from '../config';
 
 const initialState = {
   products: [],
@@ -76,7 +75,7 @@ export const fetchProductDetails = (id) => async (dispatch) => {
 export const createProduct = (productData) => async (dispatch) => {
   dispatch(showNotification({ status: 'loading' }));
   try {
-    const { data } = await authAxios.post('/api/products', productData);
+    const { data } = await axios.post('/api/products', productData);
     dispatch(addProduct(data.product));
     dispatch(
       showNotification({
@@ -100,7 +99,7 @@ export const createProduct = (productData) => async (dispatch) => {
 export const updateProduct = (id, productData) => async (dispatch) => {
   dispatch(showNotification({ status: 'loading' }));
   try {
-    const { data } = await authAxios.put('/api/products', productData);
+    const { data } = await axios.put(`/api/products/${id}`, productData);
 
     dispatch(editProduct(data.product));
     dispatch(showNotification(null));

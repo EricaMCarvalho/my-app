@@ -4,11 +4,17 @@ const catchAsync = require('./catchAsync');
 const User = require('../models/User');
 
 exports.authenticateToken = catchAsync(async (req, res, next) => {
-  const authHeader = req.headers.authorization;
-  const token =
-    authHeader &&
-    authHeader.startsWith('Bearer') &&
-    req.headers.authorization.split(' ')[1];
+  // const authHeader = req.headers.authorization;
+  // const token =
+  //   authHeader &&
+  //   authHeader.startsWith('Bearer') &&
+  //   req.headers.authorization.split(' ')[1];
+
+  let token;
+
+  if (req.cookies['roma-token']) {
+    token = req.cookies['roma-token'];
+  }
 
   if (!token) {
     return next(
@@ -18,7 +24,6 @@ exports.authenticateToken = catchAsync(async (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(decoded);
 
     if (decoded.iss !== 'api.roma' || decoded.aud !== 'api.roma') {
       return next(

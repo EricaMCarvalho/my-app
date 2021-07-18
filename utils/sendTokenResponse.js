@@ -16,13 +16,24 @@ const sendTokenResponse = (user, statusCode, res) => {
     process.env.JWT_SECRET,
     {
       algorithm: 'HS256',
-      expiresIn: '1h',
+      expiresIn: process.env.JWT_EXPIRE,
     }
   );
 
   const expiresAt = jwtDecode(token).exp;
 
-  res.status(statusCode).json({
+  const options = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRE * 60 * 60 * 1000
+    ),
+    httpOnly: true,
+  };
+
+  if (process.env.NODE_ENV === 'production') {
+    options.secure = true;
+  }
+
+  res.status(statusCode).cookie('roma-token', token, options).json({
     success: true,
     userInfo,
     token,

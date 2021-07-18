@@ -51,3 +51,11 @@ exports.signUp = catchAsync(async (req, res, next) => {
 
   sendTokenResponse(user, 201, res);
 });
+
+exports.logout = catchAsync(async (req, res, next) => {
+  res.cookie('roma-token', 'none', {
+    expires: new Date(Date.now() + 10),
+    httpOnly: true,
+  });
+  res.status(200).json({ success: true });
+});

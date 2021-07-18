@@ -11,7 +11,6 @@ const Nav = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    history.push('/login');
   };
 
   return (
@@ -79,11 +78,7 @@ const Nav = () => {
 
         <li className='navigation-item'>
           {isAuthenticated ? (
-            <Link
-              to='/login'
-              onClick={handleLogout}
-              className='navigation-link'
-            >
+            <Link to='/' onClick={handleLogout} className='navigation-link'>
               Sair
             </Link>
           ) : (

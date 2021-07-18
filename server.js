@@ -1,6 +1,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const csurf = require('csurf');
 const connectDB = require('./config/database');
 
 const errorHandler = require('./middleware/errorHandler');
@@ -8,6 +10,10 @@ const authRouter = require('./routes/auth');
 const productsRouter = require('./routes/products');
 
 const app = express();
+
+// const csurfProtection = csurf({
+//   cookie: true,
+// });
 
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
@@ -17,6 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
 connectDB();
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
