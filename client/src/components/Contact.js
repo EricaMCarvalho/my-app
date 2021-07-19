@@ -117,7 +117,7 @@ const Contact = () => {
             type='text'
             value={subject}
             onChange={(e) => setSubject(e.target.value)}
-            maxlength='50'
+            maxLength='50'
             required
           />
         </div>

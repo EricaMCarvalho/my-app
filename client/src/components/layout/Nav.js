@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
 import { logout } from '../../store/authSlice';
 
 const Nav = () => {
   const { userInfo, isAuthenticated } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const handleLogout = () => {
     dispatch(logout());
