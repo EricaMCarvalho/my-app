@@ -20,6 +20,17 @@
     cursor: pointer;
     height: 8rem;
     width: 5.5rem;
+
+    &-label {
+      background-color: $color-primary;
+      color: $color-primary-light;
+      font-size: 1.5rem;
+      position: absolute;
+      top: 55%;
+      right: 50%;
+      transform: translateX(50%);
+      text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2);
+    }
   }
 
   &-button--right {
@@ -35,7 +46,7 @@
   }
 
   &-button--left {
-    font-size: 3rem;
+    font-size: 4rem;
     right: 5.5rem;
   }
 

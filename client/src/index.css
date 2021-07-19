@@ -431,6 +431,15 @@ body {
     cursor: pointer;
     height: 8rem;
     width: 5.5rem; }
+    .header-button-label {
+      background-color: #d9a872;
+      color: #fcece5;
+      font-size: 1.5rem;
+      position: absolute;
+      top: 55%;
+      right: 50%;
+      transform: translateX(50%);
+      text-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.2); }
   .header-button--right {
     right: 0; }
   .header-button--left:hover {
@@ -438,7 +447,7 @@ body {
   .header-button--left:active {
     transform: scale(1) translateY(1px); }
   .header-button--left {
-    font-size: 3rem;
+    font-size: 4rem;
     right: 5.5rem; }
   .header-icon {
     color: #d9a872; }

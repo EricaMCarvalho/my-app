@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { toRealCurrency } from '../helpers';
 import Alert from '../components/Alert';
 import { addItemsToCart } from '../store/cartSlice';
@@ -10,11 +10,11 @@ const ProductDetails = ({ product }) => {
   const id = useParams().id;
 
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
+  const { cartItems } = useSelector((state) => state.cart);
 
   useEffect(() => {
-    localStorage.setItem('roma-cartItems', JSON.stringify(cart));
-  }, [cart]);
+    localStorage.setItem('roma-cartItems', JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const handleClick = async (e) => {
     dispatch(
@@ -78,6 +78,9 @@ const ProductDetails = ({ product }) => {
                 <i className='fas fa-shopping-bag'></i> Adicionar à sacola
               </button>
             </form>
+            <Link to='/sacola'>
+              <i className='fas fa-shopping-bag'></i> Veja sua sacola
+            </Link>
           </div>
         </div>
       </div>
