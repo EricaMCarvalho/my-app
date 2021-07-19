@@ -314,7 +314,8 @@ body {
     padding: 0.5rem;
     font-size: 1.8rem;
     border: 1px solid #d9a872;
-    color: #d9a872; }
+    color: #d9a872;
+    font-family: inherit; }
 
 .icons {
   width: 100%;

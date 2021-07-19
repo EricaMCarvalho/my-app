@@ -8,9 +8,9 @@ const ErrorResponse = require('../utils/ErrorResponse');
  * Access:      Public
  */
 exports.getProducts = catchAsync(async (req, res, next) => {
-  let query = req.query;
+  let filter = req.query && req.query.filter;
   let products;
-  if (query) {
+  if (filter === 'featured') {
     products = await Product.find({ isFeatured: true });
   } else {
     products = await Product.find();

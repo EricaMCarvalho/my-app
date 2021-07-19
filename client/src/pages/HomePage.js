@@ -21,9 +21,9 @@ const HomePage = () => {
     <main className='container'>
       <Hero />
       <div className='my-5'>
-        <h1 className='heading-primary'>Nossos Produtos</h1>
+        <h1 className='heading-primary'>Produtos em destaque</h1>
         <h2 className='heading-secondary'>
-          <i className='fas fa-cookie-bite'></i> Conheça nossos produtos
+          <i className='fas fa-cookie-bite'></i> Mais pedidos e novidades
         </h2>
         {notification && notification.status === 'loading' && <Loader />}
         {notification && notification.status === 'error' && (

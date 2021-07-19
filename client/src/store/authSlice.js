@@ -61,6 +61,10 @@ export const signup = (userData) => async (dispatch) => {
             : error.message,
       })
     );
+
+    setTimeout(() => {
+      dispatch(showNotification(null));
+    }, 5000);
   }
 };
 
@@ -85,6 +89,10 @@ export const login = (userData) => async (dispatch) => {
             : error.message,
       })
     );
+
+    setTimeout(() => {
+      dispatch(showNotification(null));
+    }, 5000);
   }
 };
 
@@ -107,6 +115,10 @@ export const logout = () => async (dispatch) => {
             : error.message,
       })
     );
+
+    setTimeout(() => {
+      dispatch(showNotification(null));
+    }, 5000);
   }
 };
 

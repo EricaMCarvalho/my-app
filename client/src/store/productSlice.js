@@ -46,7 +46,7 @@ export const fetchProducts = (query) => async (dispatch) => {
       showNotification({
         status: 'error',
         message:
-          error.resonse && error.response.data.error
+          error.response && error.response.data.error
             ? error.response.data.error
             : error.message,
       })
@@ -65,7 +65,7 @@ export const fetchProductDetails = (id) => async (dispatch) => {
       showNotification({
         status: 'error',
         message:
-          error.resonse && error.response.data.error
+          error.response && error.response.data.error
             ? error.response.data.error
             : error.message,
       })
@@ -89,7 +89,7 @@ export const createProduct = (productData) => async (dispatch) => {
       showNotification({
         status: 'error',
         message:
-          error.resonse && error.response.data.error
+          error.response && error.response.data.error
             ? error.response.data.error
             : error.message,
       })
@@ -109,7 +109,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
       showNotification({
         status: 'error',
         message:
-          error.resonse && error.response.data.error
+          error.response && error.response.data.error
             ? error.response.data.error
             : error.message,
       })

@@ -2,31 +2,28 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-const csurf = require('csurf');
-const connectDB = require('./config/database');
-
-const errorHandler = require('./middleware/errorHandler');
-const authRouter = require('./routes/auth');
-const productsRouter = require('./routes/products');
 
 const app = express();
 
-// const csurfProtection = csurf({
-//   cookie: true,
-// });
-
+// Set env variables and logger
 if (process.env.NODE_ENV !== 'production') {
   dotenv.config();
   app.use(morgan('dev'));
 }
 
-connectDB();
+// Local dependencies
+const connectDB = require('./config/database');
+const errorHandler = require('./middleware/errorHandler');
+const authRouter = require('./routes/auth');
+const productsRouter = require('./routes/products');
+const { contact } = require('./controllers/contact');
 
 app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
+app.use('/api/contact', contact);
 
 app.use(errorHandler);
 
