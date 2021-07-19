@@ -2,6 +2,11 @@ const catchAsync = require('../middleware/catchAsync');
 const sendEmail = require('../utils/sendEmail');
 const ErrorResponse = require('../utils/ErrorResponse');
 
+/**
+ * Route:       POST /api/contact
+ * Description: Send contact email
+ * Access:      Public
+ */
 exports.contact = catchAsync(async (req, res, next) => {
   const { name, email, tel, subject, message } = req.body;
 

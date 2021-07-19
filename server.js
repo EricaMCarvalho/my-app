@@ -16,6 +16,7 @@ const connectDB = require('./config/database');
 const errorHandler = require('./middleware/errorHandler');
 const authRouter = require('./routes/auth');
 const productsRouter = require('./routes/products');
+const usersRouter = require('./routes/users');
 const { contact } = require('./controllers/contact');
 
 app.use(express.json());
@@ -23,6 +24,7 @@ app.use(cookieParser());
 
 app.use('/api/auth', authRouter);
 app.use('/api/products', productsRouter);
+app.use('/api/users', usersRouter);
 app.use('/api/contact', contact);
 
 app.use(errorHandler);

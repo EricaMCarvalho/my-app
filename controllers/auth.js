@@ -3,6 +3,11 @@ const ErrorResponse = require('../utils/ErrorResponse');
 const User = require('../models/User');
 const sendTokenResponse = require('../utils/sendTokenResponse');
 
+/**
+ * Route:       POST /api/auth/login
+ * Description: Login
+ * Access:      Public
+ */
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
@@ -17,7 +22,6 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   const isMatch = await user.isValidPassword(password);
-  console.log(isMatch);
 
   if (!isMatch) {
     return next(new ErrorResponse('Email ou senha inválido', 400));
@@ -25,6 +29,11 @@ exports.login = catchAsync(async (req, res, next) => {
   sendTokenResponse(user, 200, res);
 });
 
+/**
+ * Route:       POST /api/auth/signup
+ * Description: Register new user
+ * Access:      Public
+ */
 exports.signUp = catchAsync(async (req, res, next) => {
   const { firstName, lastName, email, password } = req.body;
 
@@ -52,6 +61,11 @@ exports.signUp = catchAsync(async (req, res, next) => {
   sendTokenResponse(user, 201, res);
 });
 
+/**
+ * Route:       GET /api/auth/logout
+ * Description: Logout
+ * Access:      Private
+ */
 exports.logout = catchAsync(async (req, res, next) => {
   res.cookie('roma-token', 'none', {
     expires: new Date(Date.now() + 10),
