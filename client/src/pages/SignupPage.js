@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { showNotification } from '../store/uiSlice';
 import { signup } from '../store/authSlice';
@@ -14,8 +14,19 @@ const SignupPage = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const dispatch = useDispatch();
+  const location = useLocation();
+  const history = useHistory();
 
   const { notification } = useSelector((state) => state.ui);
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  const redirect = location.search ? location.search.split('=')[1] : 1;
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push(`/${redirect}` || '/produtos');
+    }
+  }, [history, isAuthenticated, redirect]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -101,7 +112,7 @@ const SignupPage = () => {
       </form>
       <p className='my-2 text-center'>
         Já possui uma conta?{' '}
-        <Link to='/login'>
+        <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>
           <strong>Faça seu login</strong>
         </Link>
       </p>

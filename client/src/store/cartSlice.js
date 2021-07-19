@@ -50,4 +50,24 @@ export const cartSlice = createSlice({
 export const { addItemsToCart, updateItemQty, removeItemsFromCart } =
   cartSlice.actions;
 
+export const createOrder = (orderData) => async (dispatch) => {
+  dispatch(showNotification({ status: 'loading' }));
+
+  try {
+    await axios.post('/api/orders', orderData);
+
+    dispatch(showNotification(null));
+  } catch (error) {
+    dispatch(
+      showNotification({
+        status: 'error',
+        message:
+          error.response && error.response.data.error
+            ? error.response.data.error
+            : error.message,
+      })
+    );
+  }
+};
+
 export default cartSlice.reducer;

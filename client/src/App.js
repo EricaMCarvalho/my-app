@@ -81,19 +81,13 @@ function App() {
             }
           />
 
-          <Route
-            path='/cadastro'
-            render={() =>
-              !isAuthenticated ? <SignupPage /> : <Redirect to='/produtos' />
-            }
-          />
+          <Route path='/login'>
+            <LoginPage />
+          </Route>
 
-          <Route
-            path='/login'
-            render={() =>
-              !isAuthenticated ? <LoginPage /> : <Redirect to='/produtos' />
-            }
-          />
+          <Route path='/cadastro'>
+            <SignupPage />
+          </Route>
 
           <AdminRoute exact path='/admin/produtos'>
             <ProductsAdminPage />

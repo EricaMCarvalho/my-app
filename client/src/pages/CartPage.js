@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 import { toRealCurrency } from '../helpers';
 
 const CartPage = () => {
   const { cartItems, count } = useSelector((state) => state.cart);
 
+  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
     localStorage.setItem('roma-cartItems', JSON.stringify(cartItems));
   }, [cartItems, dispatch]);
 
-  const handleClick = () => {
-    // TODO: checkout
+  const handleCheckout = () => {
+    history.push('/login?redirect=shipping');
   };
 
   return (
@@ -55,12 +56,23 @@ const CartPage = () => {
                 )}
               </h4>
               <button
-                onClick={handleClick}
+                onClick={handleCheckout}
                 type='button'
                 className='button button-primary'
               >
                 Continuar
               </button>
+              <Link
+                to='/produtos'
+                className='my-2 text-center'
+                style={{
+                  fontSize: '1.4rem',
+                  textDecoration: 'underline',
+                  opacity: '0.7',
+                }}
+              >
+                Comprar mais produtos
+              </Link>
             </div>
           </div>
         </div>

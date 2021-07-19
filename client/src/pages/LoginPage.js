@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../store/authSlice';
 import Loader from '../components/Loader';
@@ -10,8 +10,19 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+  const location = useLocation();
+  const history = useHistory();
 
   const { notification } = useSelector((state) => state.ui);
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  const redirect = location.search ? location.search.split('=')[1] : 1;
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push(`/${redirect}` || '/produtos');
+    }
+  }, [history, isAuthenticated, redirect]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,7 +68,7 @@ const LoginPage = () => {
       </form>
       <p className='my-2 text-center'>
         Quer criar uma conta?{' '}
-        <Link to='/cadastro'>
+        <Link to={redirect ? `/cadastro?redirect=${redirect}` : '/cadastro'}>
           <strong>Faça seu cadastro</strong>
         </Link>
       </p>
