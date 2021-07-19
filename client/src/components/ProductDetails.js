@@ -1,11 +1,33 @@
-// TODO
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { toRealCurrency } from '../helpers';
 import Alert from '../components/Alert';
+import { addItemsToCart } from '../store/cartSlice';
 
 const ProductDetails = ({ product }) => {
-  const [qty, setQty] = useState(0);
+  const [qty, setQty] = useState(1);
+  const id = useParams().id;
+
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+
+  useEffect(() => {
+    localStorage.setItem('roma-cartItems', JSON.stringify(cart));
+  }, [cart]);
+
+  const handleClick = async (e) => {
+    dispatch(
+      addItemsToCart({
+        id,
+        qty,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        countInStock: product.countInStock,
+      })
+    );
+  };
 
   return (
     <>
@@ -39,7 +61,7 @@ const ProductDetails = ({ product }) => {
               <select
                 id='qty'
                 value={qty}
-                onChange={(e) => setQty(e.target.value)}
+                onChange={(e) => setQty(Number(e.target.value))}
               >
                 {[...Array(product.countInStock).keys()].map((q) => (
                   <option key={q + 1} value={q + 1}>
@@ -48,7 +70,11 @@ const ProductDetails = ({ product }) => {
                 ))}
               </select>
 
-              <button className='button button-primary m-2'>
+              <button
+                type='button'
+                onClick={handleClick}
+                className='button button-primary m-2'
+              >
                 <i className='fas fa-shopping-bag'></i> Adicionar à sacola
               </button>
             </form>
