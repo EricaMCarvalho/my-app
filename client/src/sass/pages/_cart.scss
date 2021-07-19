@@ -1,0 +1,48 @@
+.cart {
+  &-grid {
+    max-width: 80rem;
+    margin: auto;
+    @include respond(tab-port) {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+    }
+  }
+
+  &-item {
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $color-primary-light;
+
+    @include respond(tab-port) {
+      justify-content: flex-start;
+    }
+
+    a {
+      width: 10rem;
+      padding-right: 0.5rem;
+
+      @include respond(tab-port) {
+        margin-right: 2rem;
+      }
+    }
+
+    form {
+      font-size: 1.3rem;
+
+      button {
+        padding: 0.7rem;
+      }
+    }
+  }
+
+  &-checkout-content {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
