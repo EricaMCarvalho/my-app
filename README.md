@@ -4,7 +4,7 @@ Customised eCommerce application with shopping cart, admin functionality and pay
 
 ## State management
 
-- Redux used for state management (implemented with reduce toolkit).
+- Redux used for state management (implemented with redux toolkit).
 
 ## Styles
 
