@@ -12,6 +12,7 @@ import CartPage from './pages/CartPage';
 import ProductsPage from './pages/ProductsPage';
 import ProductDetailsPage from './pages/ProductDetailsPage';
 import Loader from './components/Loader';
+import ShippingPage from './pages/ShippingPage';
 
 // Lazy imports
 const UserProfilePage = lazy(() => import('./pages/UserProfilePage'));
@@ -87,6 +88,10 @@ function App() {
 
           <Route path='/cadastro'>
             <SignupPage />
+          </Route>
+
+          <Route path='/entrega'>
+            <ShippingPage />
           </Route>
 
           <AdminRoute exact path='/admin/produtos'>

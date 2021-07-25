@@ -32,10 +32,18 @@ const OrderSchema = new mongoose.Schema(
         },
       },
     ],
+    deliveryMethod: {
+      type: String,
+      required: true,
+      enum: ['shipping', 'collection'],
+    },
+    collectionSlot: {},
     shippingAddress: {
-      address: { type: String, required: true },
-      city: { type: String, required: true },
-      postalCode: { type: String, required: true },
+      address: { type: String },
+      district: { type: String },
+      city: { type: String },
+      postalCode: { type: String },
+      telephone: { type: String },
     },
     paymentResult: {
       id: { type: String },

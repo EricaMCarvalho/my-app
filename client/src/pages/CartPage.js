@@ -15,7 +15,7 @@ const CartPage = () => {
   }, [cartItems, dispatch]);
 
   const handleCheckout = () => {
-    history.push('/login?redirect=shipping');
+    history.push('/login?redirect=entrega');
   };
 
   return (
